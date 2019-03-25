@@ -1,0 +1,7 @@
+﻿  pr1.cpp
+d:\svn\programmers\week1\pr1.cpp(11): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+d:\svn\programmers\week1\pr1.cpp(53): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+d:\svn\programmers\week1\pr1.cpp(59): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+d:\svn\programmers\week1\pr1.cpp(71): warning C4326: 'main'의 반환 형식이 'int'이어야 하는데 'void'입니다.
+d:\svn\programmers\week1\pr1.cpp(29): warning C4715: 'getRemainValue': 모든 제어 경로에서 값을 반환하지는 않습니다.
+  week1.vcxproj -> D:\SVN\programmers\week1\Debug\week1.exe

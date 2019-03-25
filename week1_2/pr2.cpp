@@ -45,7 +45,7 @@ bool solution(vector<string> phone_book) {
 	int hash_size = 10;
 	list<string> *hashTable = new list<string>[hash_size];
 
-	for (int i = 0; i < phone_book.size(); i++)
+	for (int i = 0; i < phone_book.size(); i++) 
 	{
 		int hash = getHashValue(phone_book.at(i), hash_size);
 		answer =  checkOverlap(hashTable, phone_book.at(i), hash_size);

@@ -1,0 +1,5 @@
+﻿  main.cpp
+d:\svn\programmers\week3_1\main.cpp(26): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+d:\svn\programmers\week3_1\main.cpp(77): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+d:\svn\programmers\week3_1\main.cpp(116): warning C4326: 'main'의 반환 형식이 'int'이어야 하는데 'void'입니다.
+  week3_1.vcxproj -> D:\SVN\programmers\week1\Debug\week3_1.exe

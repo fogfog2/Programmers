@@ -7,7 +7,7 @@ using namespace std;
 int searchHigh(queue<int> que)
 {
 	int first = que.front();
-	int first_id = 0;
+	int first_id = 0;                       
 	que.pop();
 	for (int i = 0; que.size()>0; i++)
 	{
