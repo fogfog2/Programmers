@@ -17,8 +17,64 @@ vector<int> heap_insert(vector<int> heaparray, int pos, int child_value)
 		heaparray.at(pos) = parent_value; 
 		return heap_insert(heaparray, parent, child_value); 
 	}
+}
+vector<int> heap_delete(vector<int> heaparray, int pos, int parent_value)
+{
+	int child1, child2;
+	child1 = (pos + 1) * 2 - 1;
+	child2 = (pos + 1) * 2;
+
+	if (child1 < heaparray.size() && child2 < heaparray.size())
+	{
+
+		int child_value1 = heaparray.at(child1);
+		int child_value2 = heaparray.at(child2);
+		int max_value = max(child_value1, child_value2);
+
+		if (max_value > parent_value)//바꿔야한다면
+		{
+			if (max_value == child_value1)
+			{
+				heaparray.at(pos) = child_value1;
+				heaparray.at(child1) = parent_value;
+				return heap_delete(heaparray, child1, parent_value);
+			}
+			else
+			{
+				heaparray.at(pos) = child_value2;
+				heaparray.at(child2) = parent_value;
+				return heap_delete(heaparray, child2, parent_value);
+			}
+		}
+		else
+		{
+			return heaparray;
+		}
+	}
+	else if (child1 == heaparray.size() - 1) //노드가 하나인게 마지막 노드인경우
+	{
+		int child_value1 = heaparray.at(child1);
+
+		if (child_value1 > parent_value)
+		{
+			heaparray.at(pos) = child_value1;
+			heaparray.at(child1) = parent_value;
+			return heaparray;
+		}
+		else
+		{
+			return heaparray;
+		}
+	}
+	else //노드가 없는경우
+	{
+		return heaparray;
+	}
+	
+
 
 }
+
 int find_min(vector<int> heaparray)
 {
 	int min = 1000001;
@@ -35,11 +91,13 @@ bool isend(vector<int> heaparray, int k)
 {
 	int last_idx = find_min(heaparray);	
 	int last = heaparray.at(last_idx); 
-	heaparray.erase(heaparray.begin()+ last_idx);
+	heaparray= heap_delete(heaparray, last_idx, last);
+	//heaparray.erase(heaparray.begin()+ last_idx);
 
 	int second_last_idx = find_min(heaparray);
 	int second_last = heaparray.at(second_last_idx);
-	heaparray.erase(heaparray.begin() + second_last_idx);
+	heaparray = heap_delete(heaparray, second_last_idx, second_last);
+	//heaparray.erase(heaparray.begin() + second_last_idx);
 
 
 	if (min(last, second_last) >= k)
@@ -87,6 +145,7 @@ int solution(vector<int> scoville, int K) {
 
 	while (true)
 	{
+		printf("%2d] ", counter);
 		printscoville(scoville);
 		if (scoville.size() == 1)
 		{
@@ -120,20 +179,23 @@ void main()
 	scoville.push_back(15);
 	scoville.push_back(13);
 	scoville.push_back(12);
-	scoville.push_back(1);         
-	scoville.push_back(1);
-	scoville.push_back(1);
-	scoville.push_back(1);
+	scoville.push_back(25);         
+	scoville.push_back(15);
+	scoville.push_back(100);
+	scoville.push_back(6);
+	scoville.push_back(7);
+	scoville.push_back(91);
 	scoville.push_back(1);
 	scoville.push_back(9);
-
-	scoville.push_back(0);
-	scoville.push_back(0);
-	scoville.push_back(13);
-	scoville.push_back(12);
-	scoville.push_back(13);
-	scoville.push_back(20);
-	scoville.push_back(16);
-	scoville.push_back(12);
-	solution(scoville, 10);
+	scoville.push_back(8);
+	scoville.push_back(9);
+	scoville.push_back(1);
+	scoville.push_back(71);
+	scoville.push_back(1);
+	scoville.push_back(2);
+	scoville.push_back(5);
+	scoville.push_back(6);
+	scoville.push_back(9);
+	scoville.push_back(1);
+	solution(scoville, 50);
 }
