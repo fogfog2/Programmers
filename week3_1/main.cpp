@@ -1,3 +1,4 @@
+//heap 만들어서 해보려 했으나 실패
 #include <string>
 #include <vector>
 #include <algorithm>
@@ -66,7 +67,7 @@ vector<int> heap_delete(vector<int> heaparray, int pos, int parent_value)
 			return heaparray;
 		}
 	}
-	else //노드가 없는경우
+	else //아래 노드가 없는경우
 	{
 		return heaparray;
 	}
@@ -91,11 +92,32 @@ bool isend(vector<int> heaparray, int k)
 {
 	int last_idx = find_min(heaparray);	
 	int last = heaparray.at(last_idx); 
+	
+	if (heaparray.size() - 1 == last_idx)
+	{
+		heaparray.erase(heaparray.begin() + last_idx);
+	}
+	else
+	{
+		heaparray.at(last_idx) = heaparray.at(heaparray.size()-1);
+		heaparray.erase(heaparray.begin() + heaparray.size() - 1);
+	}
+	
 	heaparray= heap_delete(heaparray, last_idx, last);
 	//heaparray.erase(heaparray.begin()+ last_idx);
 
 	int second_last_idx = find_min(heaparray);
 	int second_last = heaparray.at(second_last_idx);
+
+	if (heaparray.size() - 1 == second_last_idx)
+	{
+		heaparray.erase(heaparray.begin() + second_last_idx);
+	}
+	else
+	{
+		heaparray.at(second_last_idx) = heaparray.at(heaparray.size() - 1);
+		heaparray.erase(heaparray.begin() + heaparray.size() - 1);
+	}
 	heaparray = heap_delete(heaparray, second_last_idx, second_last);
 	//heaparray.erase(heaparray.begin() + second_last_idx);
 
@@ -112,12 +134,30 @@ vector<int> scovile_sort(vector<int> heaparray, int k )
 {
 	int last_idx = find_min(heaparray);
 	int last = heaparray.at(last_idx);
-	heaparray.erase(heaparray.begin() + last_idx);
-
+	if (heaparray.size() - 1 == last_idx)
+	{
+		heaparray.erase(heaparray.begin() + last_idx);
+	}
+	else
+	{
+		heaparray.at(last_idx) = heaparray.at(heaparray.size() - 1);
+		heaparray.erase(heaparray.begin() + heaparray.size() - 1);
+	}
+	//heaparray.erase(heaparray.begin() + last_idx);
+	heaparray = heap_delete(heaparray, last_idx, last);
 	int second_last_idx = find_min(heaparray);
 	int second_last = heaparray.at(second_last_idx);
-	heaparray.erase(heaparray.begin() + second_last_idx);
-
+	//heaparray.erase(heaparray.begin() + second_last_idx);
+	if (heaparray.size() - 1 == second_last_idx)
+	{
+		heaparray.erase(heaparray.begin() + second_last_idx);
+	}
+	else
+	{
+		heaparray.at(second_last_idx) = heaparray.at(heaparray.size() - 1);
+		heaparray.erase(heaparray.begin() + heaparray.size() - 1);
+	}
+	heaparray = heap_delete(heaparray, second_last_idx, second_last);
 	int new_value = min(last, second_last) + 2* max(last, second_last);
 	heaparray.push_back(new_value);
 
@@ -145,7 +185,7 @@ int solution(vector<int> scoville, int K) {
 
 	while (true)
 	{
-		printf("%2d] ", counter);
+	    printf("%2d] ", counter);
 		printscoville(scoville);
 		if (scoville.size() == 1)
 		{
@@ -175,27 +215,28 @@ void main()
 {
 	vector<int> scoville;
 
-	scoville.push_back(11);
-	scoville.push_back(15);
-	scoville.push_back(13);
-	scoville.push_back(12);
-	scoville.push_back(25);         
-	scoville.push_back(15);
-	scoville.push_back(100);
-	scoville.push_back(6);
 	scoville.push_back(7);
-	scoville.push_back(91);
 	scoville.push_back(1);
-	scoville.push_back(9);
-	scoville.push_back(8);
-	scoville.push_back(9);
-	scoville.push_back(1);
-	scoville.push_back(71);
-	scoville.push_back(1);
+	scoville.push_back(0);
 	scoville.push_back(2);
-	scoville.push_back(5);
 	scoville.push_back(6);
-	scoville.push_back(9);
-	scoville.push_back(1);
-	solution(scoville, 50);
+	scoville.push_back(6);
+	scoville.push_back(3);
+	scoville.push_back(4);
+	scoville.push_back(4);
+	scoville.push_back(4);
+	scoville.push_back(4);
+	scoville.push_back(4);
+	scoville.push_back(2);
+	scoville.push_back(2);
+	scoville.push_back(2);
+	scoville.push_back(3);
+	scoville.push_back(3);
+	scoville.push_back(3);
+	scoville.push_back(3);
+	scoville.push_back(6);
+	scoville.push_back(6);
+	scoville.push_back(6);
+	scoville.push_back(6);
+	solution(scoville,150);
 }
